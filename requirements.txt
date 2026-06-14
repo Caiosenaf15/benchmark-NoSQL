@@ -2,9 +2,6 @@ pymongo
 redis
 cassandra-driver
 cryptography
+psutil
 bcrypt
 argon2-cffi
-psutil
-pandas
-numpy
-matplotlib

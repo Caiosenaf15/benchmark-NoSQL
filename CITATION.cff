@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Se você utilizar este repositório, por favor cite o trabalho conforme abaixo."
+title: "Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL"
+authors:
+  - family-names: "Sena Freitas"
+    given-names: "Caio"
+  - family-names: "Tavares Pinto"
+    given-names: "Pedro Henrique"
+date-released: 2026-06-14
+url: "https://github.com/Caiosenaf15/benchmark-NoSQL"
+license: MIT

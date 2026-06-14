@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -39,6 +40,13 @@
             padding: 2px 5px;
         }
 
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+
         .box {
             background: #f7f7f7;
             border: 1px solid #ccc;
@@ -48,6 +56,12 @@
 
         .center {
             text-align: center;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -62,47 +76,103 @@
             Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
         </h1>
 
-        <h3>
-            Reprodutibilidade
-        </h3>
+        <p>
+            <img src="https://img.shields.io/badge/Python-3.11-blue" alt="Python 3.11">
+            <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
+            <img src="https://img.shields.io/badge/MongoDB-7.0-success" alt="MongoDB 7.0">
+            <img src="https://img.shields.io/badge/Redis-7.x-red" alt="Redis 7.x">
+            <img src="https://img.shields.io/badge/Cassandra-4.1-orange" alt="Cassandra 4.1">
+        </p>
+
+        <h2>Sumário</h2>
+        <ul style="display:inline-block; text-align:left;">
+            <li><a href="#visao-geral">Visão Geral</a></li>
+            <li><a href="#codigo-fonte">Código-Fonte</a></li>
+            <li><a href="#documentacao">Documentação</a></li>
+            <li><a href="#reproducao">Reprodução dos Experimentos</a></li>
+            <li><a href="#configuracao">Configuração Experimental</a></li>
+            <li><a href="#ambiente">Ambiente Experimental</a></li>
+            <li><a href="#resultados-brutos">Resultados / Dados Brutos</a></li>
+            <li><a href="#graficos">Gráficos Comparativos</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#limitacoes">Limitações</a></li>
+            <li><a href="#citacao">Citação</a></li>
+        </ul>
+
+        <h3>Pacote de Reprodutibilidade</h3>
 
     </div>
 
     <hr>
 
-    <h2>Resumo</h2>
+    <h2 id="visao-geral">Visão Geral</h2>
 
     <p>
         Esta página disponibiliza os artefatos utilizados no artigo
-        <b>"Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL"</b>.
+        <b>"Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL"</b>,
+        produzido por Caio Sena Freitas e Pedro Henrique T. Pinto (CEFET/RJ – Nova Friburgo).
     </p>
 
     <p>
-        O benchmark avalia o impacto de algoritmos criptográficos em três bancos
-        de dados NoSQL:
+        O objetivo do estudo é avaliar o custo computacional introduzido por algoritmos
+        de criptografia, hashing e autenticação quando aplicados a operações comuns de
+        armazenamento e recuperação de dados, em três bancos de dados NoSQL:
     </p>
 
+    <h3 id="bancos-avaliados">Bancos de Dados Avaliados</h3>
     <ul>
-        <li>MongoDB</li>
-        <li>Redis</li>
-        <li>Apache Cassandra</li>
+        <li>MongoDB 7.0</li>
+        <li>Redis 7.x</li>
+        <li>Apache Cassandra 4.1</li>
     </ul>
 
-    <p>
-        Foram avaliados os algoritmos:
-    </p>
+    <h3 id="algoritmos">Algoritmos Avaliados</h3>
 
+    <p><b>Criptografia simétrica:</b></p>
     <ul>
-        <li>AES-256</li>
+        <li>AES-256-CFB</li>
+    </ul>
+
+    <p><b>Hash e integridade:</b></p>
+    <ul>
         <li>SHA-256</li>
-        <li>HMAC-SHA256</li>
-        <li>bcrypt</li>
+        <li>HMAC-SHA-256</li>
+    </ul>
+
+    <p><b>Derivação de senhas:</b></p>
+    <ul>
+        <li>Bcrypt</li>
         <li>Argon2</li>
     </ul>
 
+    <h3>Operações Avaliadas</h3>
+
+    <table>
+        <tr>
+            <th>Categoria</th>
+            <th>Operações</th>
+        </tr>
+        <tr>
+            <td>Inserção</td>
+            <td>insert_aes256, insert_sha256, insert_hmac_sha256, insert_bcrypt, insert_argon2</td>
+        </tr>
+        <tr>
+            <td>Leitura</td>
+            <td>read_decrypt_aes256, read_verify_sha256</td>
+        </tr>
+        <tr>
+            <td>Atualização</td>
+            <td>update_reencrypt_aes256</td>
+        </tr>
+        <tr>
+            <td>Remoção</td>
+            <td>delete_encrypted_record</td>
+        </tr>
+    </table>
+
     <hr>
 
-    <h2>Código-Fonte</h2>
+    <h2 id="codigo-fonte">Código-Fonte</h2>
 
     <div class="box">
 
@@ -120,7 +190,7 @@
 
     <hr>
 
-    <h2>Documentação</h2>
+    <h2 id="documentacao">Documentação</h2>
 
     <table>
 
@@ -144,11 +214,18 @@
             <td>Descrição dos arquivos de resultados utilizados no artigo.</td>
         </tr>
 
+        <tr>
+            <td><a href="docs/troubleshooting.md">Troubleshooting</a></td>
+            <td>Problemas enfrentados na instalação e configuração, e como foram resolvidos.</td>
+        </tr>
+
     </table>
+
+    <p><i>Nota: os links acima dependem dos arquivos correspondentes existirem em <code>docs/</code> no repositório.</i></p>
 
     <hr>
 
-    <h2>Reprodução dos Experimentos</h2>
+    <h2 id="reproducao">Reprodução dos Experimentos</h2>
 
     <p>
         Os experimentos podem ser reproduzidos em sistemas Linux ou Windows
@@ -159,28 +236,33 @@
 
         <b>1. Clonar o repositório</b>
 
-        <pre>
-git clone https://github.com/Caiosenaf15/benchmark-NoSQL.git
-cd benchmark-NoSQL
-        </pre>
+        <pre>git clone https://github.com/Caiosenaf15/benchmark-NoSQL.git
+cd benchmark-NoSQL</pre>
 
         <b>2. Instalar dependências</b>
 
-        <pre>
-pip install -r requirements.txt
-        </pre>
+        <pre>pip install -r requirements.txt</pre>
 
-        <b>3. Executar os benchmarks</b>
+        <b>3. Configurar o banco a ser testado</b>
 
-        <pre>
-bash scripts/run_all.sh
-        </pre>
+        <p>Edite <code>config.py</code> e defina <code>DB_TARGET</code> como
+        <code>"mongodb"</code>, <code>"redis"</code> ou <code>"cassandra"</code>.</p>
+
+        <b>4. Executar os benchmarks</b>
+
+        <pre>python mongodb/benchmark.py
+python redis/benchmark.py
+python cassandra/benchmark.py</pre>
+
+        <p>Ou, se disponível, executar o pipeline completo:</p>
+
+        <pre>bash scripts/run_all.sh</pre>
 
     </div>
 
     <hr>
 
-    <h2>Configuração Experimental</h2>
+    <h2 id="configuracao">Configuração Experimental</h2>
 
     <table>
 
@@ -195,54 +277,370 @@ bash scripts/run_all.sh
         </tr>
 
         <tr>
-            <td>Operation Count</td>
-            <td>100000</td>
+            <td>Record Count (load)</td>
+            <td>100.000</td>
         </tr>
 
         <tr>
-            <td>Payloads Testados</td>
+            <td>Operation Count (run)</td>
+            <td>100.000</td>
+        </tr>
+
+        <tr>
+            <td>Workloads YCSB</td>
+            <td>A, B, C, D</td>
+        </tr>
+
+        <tr>
+            <td>Payloads Testados (benchmark criptográfico)</td>
             <td>64, 256, 1024 e 4096 bytes</td>
         </tr>
 
         <tr>
-            <td>Iterações Benchmark Criptográfico</td>
-            <td>10000</td>
+            <td>Iterações por operação (benchmark criptográfico)</td>
+            <td>10.000</td>
+        </tr>
+
+        <tr>
+            <td>Amostragem de CPU/RAM</td>
+            <td>a cada 50 ms, durante a execução de cada teste</td>
         </tr>
 
     </table>
 
     <hr>
 
-    <h2>Resultados Disponíveis</h2>
+    <h2 id="ambiente">Ambiente Experimental</h2>
+
+    <h3>Hardware</h3>
+
+    <table>
+        <tr>
+            <th>Componente</th>
+            <th>Especificação</th>
+        </tr>
+        <tr>
+            <td>Processador</td>
+            <td>Intel Core i5-12400F (12ª geração, 6 núcleos / 12 threads, 800 MHz–5.600 MHz)</td>
+        </tr>
+        <tr>
+            <td>Memória RAM</td>
+            <td>32 GB DDR4</td>
+        </tr>
+        <tr>
+            <td>Placa de Vídeo</td>
+            <td>NVIDIA GeForce RTX 4060</td>
+        </tr>
+        <tr>
+            <td>Armazenamento</td>
+            <td>3 HDs físicos dedicados (1 por banco de dados)</td>
+        </tr>
+        <tr>
+            <td>Arquitetura</td>
+            <td>x86_64</td>
+        </tr>
+    </table>
 
     <p>
-        O repositório contém:
+        Cada SGBD foi instalado em um <b>disco físico exclusivo</b>, na mesma máquina,
+        para eliminar a interferência de I/O compartilhado entre os bancos durante os
+        testes — uma decisão metodológica central deste estudo.
+    </p>
+
+    <h3>Software</h3>
+
+    <table>
+        <tr>
+            <th>Software</th>
+            <th>Versão</th>
+        </tr>
+        <tr>
+            <td>Sistema Operacional</td>
+            <td>Debian GNU/Linux 12 (Bookworm), kernel 6.1.0-48-amd64</td>
+        </tr>
+        <tr>
+            <td>Python</td>
+            <td>3.11</td>
+        </tr>
+        <tr>
+            <td>Java (Cassandra)</td>
+            <td>OpenJDK 11.0.2 (instalação manual)</td>
+        </tr>
+        <tr>
+            <td>MongoDB</td>
+            <td>7.0</td>
+        </tr>
+        <tr>
+            <td>Redis</td>
+            <td>7.x (repositório Debian Bookworm)</td>
+        </tr>
+        <tr>
+            <td>Apache Cassandra</td>
+            <td>4.1.x (apache.org 41x)</td>
+        </tr>
+        <tr>
+            <td>YCSB</td>
+            <td>0.17.0</td>
+        </tr>
+    </table>
+
+    <p>
+        <b>Nota importante:</b> o Apache Cassandra 4.1 <b>não é compatível com Java 17+</b>
+        (gera erros <code>InaccessibleObjectException</code> e falhas com opções CMS). Foi
+        necessário instalar o <b>OpenJDK 11.0.2</b> manualmente a partir do binário oficial
+        e configurar <code>JAVA_HOME</code> apontando para <code>/opt/jdk-11.0.2</code>.
+        Veja a seção <a href="#troubleshooting">Troubleshooting</a> abaixo.
+    </p>
+
+    <hr>
+
+    <h2 id="resultados-brutos">Resultados / Dados Brutos</h2>
+
+    <p>
+        Os arquivos JSON abaixo contêm os resultados completos do benchmark
+        criptográfico (throughput, latência, uso de CPU e RAM) para cada banco,
+        por operação e tamanho de payload.
     </p>
 
     <ul>
-        <li>Resultados brutos dos benchmarks criptográficos</li>
-        <li>Resultados dos workloads YCSB</li>
-        <li>Scripts utilizados para coleta dos dados</li>
-        <li>Códigos-fonte dos benchmarks</li>
+        <li><a href="results/crypto_benchmark_redis_20260523_203720.json" download>crypto_benchmark_redis.json</a></li>
+        <li><a href="results/crypto_benchmark_mongo_20260523_114130.json" download>crypto_benchmark_mongo.json</a></li>
+        <li><a href="results/crypto_benchmark_cassandra_20260523_135802.json" download>crypto_benchmark_cassandra.json</a></li>
     </ul>
 
     <hr>
 
-    <h2>Citação</h2>
+    <h2 id="graficos">Gráficos Comparativos</h2>
 
-    <pre>
-@article{benchmark_nosql_crypto_2026,
-  title={Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL},
-  author={Autores},
-  year={2026}
-}
-    </pre>
+    <p>
+        Os gráficos abaixo ilustram o throughput médio (ops/s) das operações
+        <code>INSERT + AES-256</code> e <code>INSERT + SHA-256</code> nos três bancos,
+        em função do tamanho do payload, além do consumo médio de RAM por banco.
+    </p>
+
+    <canvas id="chartInsertAES" width="700" height="400"></canvas>
+    <canvas id="chartInsertSHA" width="700" height="400" style="margin-top:40px"></canvas>
+    <canvas id="chartRamUsage" width="700" height="400" style="margin-top:40px"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script>
+        const labels = ["64 B", "256 B", "1.024 B", "4.096 B"];
+
+        new Chart(document.getElementById('chartInsertAES'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Redis', data: [19913.9, 20150.5, 19313.3, 18118.7], borderColor: '#dc382d', tension: 0.2 },
+                    { label: 'MongoDB', data: [9256.1, 6624.9, 8760.0, 8039.6], borderColor: '#13aa52', tension: 0.2 },
+                    { label: 'Cassandra', data: [4239.5, 5603.0, 4898.1, 22.7], borderColor: '#1287b1', tension: 0.2 }
+                ]
+            },
+            options: {
+                plugins: { title: { display: true, text: 'INSERT + AES-256 — Throughput (ops/s)' } },
+                scales: {
+                    y: { title: { display: true, text: 'ops/s' } },
+                    x: { title: { display: true, text: 'Tamanho do payload' } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('chartInsertSHA'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Redis', data: [39757.7, 38517.8, 34885.8, 27343.6], borderColor: '#dc382d', tension: 0.2 },
+                    { label: 'MongoDB', data: [13010.3, 9136.0, 12981.7, 11147.2], borderColor: '#13aa52', tension: 0.2 },
+                    { label: 'Cassandra', data: [3879.2, 5404.6, 4090.2, 22.7], borderColor: '#1287b1', tension: 0.2 }
+                ]
+            },
+            options: {
+                plugins: { title: { display: true, text: 'INSERT + SHA-256 — Throughput (ops/s)' } },
+                scales: {
+                    y: { title: { display: true, text: 'ops/s' } },
+                    x: { title: { display: true, text: 'Tamanho do payload' } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('chartRamUsage'), {
+            type: 'bar',
+            data: {
+                labels: ['Redis', 'MongoDB', 'Cassandra'],
+                datasets: [{
+                    label: 'Uso médio de RAM (%)',
+                    data: [2.5, 3.4, 30.7],
+                    backgroundColor: ['#dc382d', '#13aa52', '#1287b1']
+                }]
+            },
+            options: {
+                plugins: { title: { display: true, text: 'Consumo Médio de RAM por Banco (%)' } },
+                scales: {
+                    y: { title: { display: true, text: '% de RAM utilizada' }, beginAtZero: true }
+                }
+            }
+        });
+    </script>
+
+    <p>
+        Observação: o Cassandra apresenta colapso de throughput para payloads de
+        4.096 bytes em operações de escrita (INSERT/UPDATE), atribuído ao mecanismo
+        de <i>compaction</i> e ao acúmulo de <i>tombstones</i> em implantações
+        <i>single-node</i>. Esse comportamento não ocorre nas operações de leitura.
+    </p>
 
     <hr>
 
-    <div class="center">
-        Última atualização: Junho de 2026
-    </div>
+    <h2 id="troubleshooting">Troubleshooting</h2>
+
+    <p>
+        Esta seção documenta os principais problemas enfrentados durante a instalação
+        e configuração dos ambientes, e como foram resolvidos. Eles podem se repetir
+        em tentativas de reprodução deste experimento.
+    </p>
+
+    <h3>Instalação do Debian</h3>
+
+    <p>
+        O <b>Secure Boot</b> deve ser <b>desativado na BIOS</b> antes de instalar o
+        Debian (erro comum: <code>SBAT self-check failed</code>).
+    </p>
+
+    <p>
+        Durante a instalação, é <b>crítico desmarcar os ambientes gráficos</b> (GNOME,
+        Xfce) e selecionar apenas <b>"servidor SSH"</b> e <b>"utilitários padrão do
+        sistema"</b>. Caso o ambiente gráfico seja instalado por engano, ele pode ser
+        removido com:
+    </p>
+
+    <pre>apt remove --purge gnome* xfce4* lightdm gdm3 -y
+apt autoremove --purge -y
+systemctl set-default multi-user.target
+reboot</pre>
+
+    <h3>Apache Cassandra 4.1 + Java</h3>
+
+    <p>Cassandra 4.1 <b>não roda como root sem a flag <code>-R</code></b>:</p>
+
+    <pre>cassandra -R -f</pre>
+
+    <p>
+        Cassandra 4.1 é <b>incompatível com Java 17</b> (erros de opções CMS e
+        <code>InaccessibleObjectException: module java.base does not "opens java.io"</code>).
+        A solução foi instalar o <b>Java 11</b> manualmente:
+    </p>
+
+    <pre># baixar jdk-11.0.2_linux-x64_bin.tar.gz de download.java.net
+tar xzf jdk-11.0.2_linux-x64_bin.tar.gz -C /opt/
+
+export JAVA_HOME=/opt/jdk-11.0.2
+export PATH=$JAVA_HOME/bin:$PATH
+echo 'export JAVA_HOME=/opt/jdk-11.0.2' &gt;&gt; /root/.bashrc
+echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; /root/.bashrc
+echo 'export JAVA_HOME=/opt/jdk-11.0.2' &gt;&gt; /etc/cassandra/cassandra-env.sh</pre>
+
+    <p>
+        Para iniciar o Cassandra em segundo plano (não usar <code>Ctrl+Z</code>, que
+        apenas pausa o processo):
+    </p>
+
+    <pre>JAVA_HOME=/opt/jdk-11.0.2 cassandra -R
+# aguardar ~2 minutos e testar com:
+cqlsh</pre>
+
+    <p>Se o <code>dpkg</code> for interrompido após um reboot forçado:</p>
+
+    <pre>dpkg --configure -a</pre>
+
+    <h3>YCSB com Cassandra</h3>
+
+    <p>
+        Antes de rodar o <code>load</code>, é necessário criar manualmente o keyspace
+        e a tabela:
+    </p>
+
+    <pre>cqlsh -e "CREATE KEYSPACE IF NOT EXISTS ycsb WITH replication = {'class':'SimpleStrategy','replication_factor':'1'};"
+cqlsh -e "CREATE TABLE IF NOT EXISTS ycsb.usertable (y_id varchar PRIMARY KEY, field0 varchar, field1 varchar, field2 varchar, field3 varchar, field4 varchar, field5 varchar, field6 varchar, field7 varchar, field8 varchar, field9 varchar);"</pre>
+
+    <h3>Dataset RT-IoT2022</h3>
+
+    <p>
+        O dataset RT-IoT2022 do UCI Machine Learning Repository exige login para
+        download direto (tentativas via <code>wget</code>/<code>curl</code> retornam
+        0–14 bytes). Alternativas:
+    </p>
+
+    <ul>
+        <li>Baixar via Kaggle em outra máquina e transferir por pendrive;</li>
+        <li>Ou acessar manualmente em:
+            <a href="https://archive.ics.uci.edu/dataset/942/rt-iot2022" target="_blank">
+                archive.ics.uci.edu/dataset/942/rt-iot2022</a>
+        </li>
+    </ul>
+
+    <p>
+        Nos testes de criptografia, os payloads utilizados foram gerados de forma
+        sintética via <code>os.urandom()</code>, eliminando a dependência direta do
+        dataset para as métricas de desempenho criptográfico (o dataset foi usado
+        apenas para a etapa de importação inicial / massa de dados realista).
+    </p>
+
+    <h3>Comando <code>wget</code> com flag incorreta</h3>
+
+    <p>
+        Ao copiar comandos de fontes diversas, atenção: <code>wget -O arquivo url</code>
+        usa "O" maiúsculo, não "0" (zero) — erro comum de digitação. Prefira:
+    </p>
+
+    <pre>curl -L -o arquivo url</pre>
+
+    <hr>
+
+    <h2 id="limitacoes">Limitações</h2>
+
+    <p>Os resultados podem variar em função de:</p>
+
+    <ul>
+        <li>Processador utilizado</li>
+        <li>Quantidade de memória disponível</li>
+        <li>Tipo de armazenamento</li>
+        <li>Sistema operacional</li>
+        <li>Processos executados em segundo plano</li>
+    </ul>
+
+    <p>
+        Adicionalmente, os experimentos foram realizados em implantação
+        <i>single-node</i> (sem cluster) e de forma serial (sem concorrência de
+        múltiplas threads de cliente). O Redis foi configurado sem persistência em
+        disco (<code>save ""</code>), o que favorece seu throughput em comparação
+        com configurações de produção que exigem durabilidade.
+    </p>
+
+    <hr>
+
+    <h2 id="citacao">Citação</h2>
+
+    <pre>@article{benchmark_nosql_crypto_2026,
+  title={Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL},
+  author={Sena Freitas, Caio and Tavares Pinto, Pedro Henrique},
+  year={2026},
+  institution={CEFET/RJ - Unidade de Ensino Descentralizada de Nova Friburgo}
+}</pre>
+
+    <hr>
+
+    <h2>Autores</h2>
+
+    <p>
+        <a href="https://github.com/Caiosenaf15" target="_blank">Caio Sena Freitas</a> e <a href="https://github.com/tavpedroh" target="_blank">Pedro Henrique Tavares Pinto</a><br>
+        CEFET/RJ – Curso de Sistemas de Informação - 2026
+    </p>
+
+    <p>
+        Em caso de dúvidas sobre a implementação, execução ou reprodução dos
+        experimentos, entre em contato com os autores do trabalho.
+    </p>
 
 </body>
 
