@@ -1,4 +1,4 @@
-# Pacote de Reprodutibilidade
+# Reprodutibilidade
 
 ## Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
 
