@@ -1,152 +1,154 @@
-# Reproducibility Package
+# Pacote de Reprodutibilidade
 
-## Benchmarking the Impact of Cryptographic Mechanisms on NoSQL Databases
+## Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
 
-This repository contains the complete artifact package used to reproduce the experiments performed in the study evaluating the performance impact of cryptographic mechanisms on NoSQL database systems.
+Este repositório contém todo o material necessário para reproduzir os experimentos realizados no estudo sobre o impacto de mecanismos criptográficos no desempenho de bancos de dados NoSQL.
 
-The benchmark evaluates the computational overhead introduced by encryption, hashing, and authentication mechanisms when integrated with common database operations.
+O benchmark avalia o custo computacional introduzido por técnicas de criptografia, hashing e autenticação quando integradas às operações de inserção, leitura, atualização e remoção de dados.
 
 ---
 
-## Abstract
+# Visão Geral
 
-Modern applications frequently store sensitive information in NoSQL databases, requiring cryptographic protections such as encryption, hashing, and message authentication.
+A proteção de informações sensíveis é um requisito fundamental em sistemas modernos. Entretanto, a aplicação de mecanismos criptográficos pode introduzir sobrecarga computacional e impactar o desempenho dos bancos de dados.
 
-This benchmark evaluates the performance impact of the following cryptographic mechanisms:
+Este benchmark foi desenvolvido para analisar esse impacto em diferentes bancos de dados NoSQL utilizando algoritmos amplamente empregados na indústria.
 
-* AES-256
-* SHA-256
-* HMAC-SHA256
-* bcrypt
-* Argon2
-
-The evaluation is performed on the following NoSQL database management systems:
+## Bancos de Dados Avaliados
 
 * MongoDB
 * Redis
 * Apache Cassandra
 
-The objective is to measure the effect of cryptographic operations on insertion, reading, updating, and deletion workloads.
+## Algoritmos Avaliados
 
----
+### Criptografia
 
-## Experimental Environment
+* AES-256
 
-### Hardware
-
-| Component | Specification        |
-| --------- | -------------------- |
-| CPU       | Intel Core i5-12400F |
-| RAM       | 32 GB DDR4           |
-| GPU       | NVIDIA RTX 4060      |
-| Storage   | SSD                  |
-
-### Operating System
-
-| Component | Version                        |
-| --------- | ------------------------------ |
-| OS        | Debian GNU/Linux 12 (Bookworm) |
-| Kernel    | Linux 6.x                      |
-
----
-
-## Software Versions
-
-The experiments were executed using the following software stack:
-
-| Software  | Version |
-| --------- | ------- |
-| Python    | 3.x     |
-| Java      | 21      |
-| MongoDB   | 7.x     |
-| Redis     | 7.x     |
-| Cassandra | 5.x     |
-| YCSB      | 0.17.0  |
-
----
-
-## Benchmark Scope
-
-The benchmark evaluates the following cryptographic operations.
-
-### Encryption
-
-* AES-256 Encryption
-* AES-256 Decryption
-
-### Hashing
+### Hash
 
 * SHA-256
 * bcrypt
 * Argon2
 
-### Authentication
+### Autenticação
 
 * HMAC-SHA256
 
 ---
 
-## Operations Evaluated
+# Ambiente Experimental
 
-The following operations are benchmarked:
+## Hardware
 
-| Operation               | Description                     |
-| ----------------------- | ------------------------------- |
-| insert_aes256           | Encrypt and insert record       |
-| insert_sha256           | Hash and insert record          |
-| insert_hmac_sha256      | Generate HMAC and insert record |
-| insert_bcrypt           | bcrypt hash insertion           |
-| insert_argon2           | Argon2 hash insertion           |
-| read_decrypt_aes256     | Read and decrypt                |
-| read_verify_sha256      | Read and verify hash            |
-| update_reencrypt_aes256 | Update and re-encrypt           |
-| delete_encrypted_record | Delete encrypted record         |
+| Componente     | Especificação        |
+| -------------- | -------------------- |
+| Processador    | Intel Core i5-12400F |
+| Memória RAM    | 32 GB DDR4           |
+| Placa de Vídeo | NVIDIA RTX 4060      |
+| Armazenamento  | SSD                  |
 
----
+## Sistema Operacional
 
-## Workload Generation
-
-The benchmark uses Yahoo! Cloud Serving Benchmark (YCSB) workloads.
-
-### YCSB Version
-
-0.17.0
-
-### Workloads
-
-#### Workload A
-
-50% Reads
-
-50% Updates
-
-#### Workload B
-
-95% Reads
-
-5% Updates
-
-#### Workload C
-
-100% Reads
-
-#### Workload D
-
-Read Latest
+| Componente          | Versão                         |
+| ------------------- | ------------------------------ |
+| Sistema Operacional | Debian GNU/Linux 12 (Bookworm) |
+| Kernel Linux        | 6.x                            |
 
 ---
 
-## Experimental Data
+# Versões dos Softwares
 
-No external datasets were used in the final experiments.
-
-All benchmark records are generated and managed through YCSB workloads.
-
-During the project design phase, external datasets were evaluated as potential data sources. However, due to compatibility issues across the evaluated database systems, the final benchmark relies exclusively on YCSB-generated workloads.
+| Software  | Versão |
+| --------- | ------ |
+| Python    | 3.x    |
+| Java      | 21     |
+| MongoDB   | 7.x    |
+| Redis     | 7.x    |
+| Cassandra | 5.x    |
+| YCSB      | 0.17.0 |
 
 ---
 
-## Repository Structure
+# Escopo do Benchmark
+
+O benchmark avalia operações criptográficas aplicadas diretamente às operações de banco de dados.
+
+## Operações de Criptografia
+
+* Criptografia AES-256
+* Descriptografia AES-256
+
+## Operações de Hash
+
+* SHA-256
+* bcrypt
+* Argon2
+
+## Operações de Autenticação
+
+* HMAC-SHA256
+
+---
+
+# Operações Avaliadas
+
+| Operação                | Descrição                          |
+| ----------------------- | ---------------------------------- |
+| insert_aes256           | Criptografar e inserir registro    |
+| insert_sha256           | Gerar hash SHA-256 e inserir       |
+| insert_hmac_sha256      | Gerar HMAC e inserir               |
+| insert_bcrypt           | Gerar hash bcrypt e inserir        |
+| insert_argon2           | Gerar hash Argon2 e inserir        |
+| read_decrypt_aes256     | Ler e descriptografar              |
+| read_verify_sha256      | Ler e verificar hash               |
+| update_reencrypt_aes256 | Atualizar e criptografar novamente |
+| delete_encrypted_record | Remover registro criptografado     |
+
+---
+
+# Geração das Cargas de Trabalho
+
+Os testes utilizam o framework YCSB (Yahoo! Cloud Serving Benchmark), amplamente utilizado para avaliação de desempenho em bancos de dados.
+
+## Versão
+
+* YCSB 0.17.0
+
+## Workloads Utilizados
+
+### Workload A
+
+* 50% Leituras
+* 50% Atualizações
+
+### Workload B
+
+* 95% Leituras
+* 5% Atualizações
+
+### Workload C
+
+* 100% Leituras
+
+### Workload D
+
+* Read Latest
+
+---
+
+# Dados Utilizados
+
+Nenhum conjunto de dados externo foi utilizado nos experimentos finais.
+
+Todos os registros utilizados nos testes foram gerados e manipulados pelo YCSB.
+
+Os resultados apresentados neste trabalho foram produzidos exclusivamente a partir dos workloads padronizados fornecidos pelo YCSB.
+
+---
+
+# Estrutura do Repositório
 
 ```text
 benchmark/
@@ -160,13 +162,10 @@ benchmark/
 │   └── validate_results.py
 │
 ├── mongodb/
-│   └── benchmark implementation
 │
 ├── redis/
-│   └── benchmark implementation
 │
 ├── cassandra/
-│   └── benchmark implementation
 │
 ├── workloads/
 │   ├── workload_a
@@ -181,27 +180,31 @@ benchmark/
 
 ---
 
-## Installation
+# Instalação
 
-### Linux
+## Linux
 
-Install dependencies:
+Atualize os pacotes:
 
 ```bash
 sudo apt update
+```
 
+Instale as dependências:
+
+```bash
 sudo apt install python3 python3-pip openjdk-21-jdk git
 ```
 
-Clone repository:
+Clone o repositório:
 
 ```bash
-git clone <repository-url>
+git clone <URL_DO_REPOSITORIO>
 
 cd benchmark
 ```
 
-Install Python dependencies:
+Instale as dependências Python:
 
 ```bash
 pip install -r requirements.txt
@@ -209,28 +212,28 @@ pip install -r requirements.txt
 
 ---
 
-### Windows
+## Windows
 
-Recommended options:
+Recomenda-se:
 
 * Docker Desktop
-* WSL2 Ubuntu
+* WSL2 (Ubuntu)
 
-Install:
+Instale:
 
 * Python 3.x
 * Java 21
 * Git
 
-Clone repository:
+Clone o repositório:
 
 ```powershell
-git clone <repository-url>
+git clone <URL_DO_REPOSITORIO>
 
 cd benchmark
 ```
 
-Install dependencies:
+Instale as dependências:
 
 ```powershell
 pip install -r requirements.txt
@@ -238,21 +241,21 @@ pip install -r requirements.txt
 
 ---
 
-## Running the Benchmark
+# Execução dos Testes
 
-### MongoDB
+## MongoDB
 
 ```bash
 python mongodb/benchmark.py
 ```
 
-### Redis
+## Redis
 
 ```bash
 python redis/benchmark.py
 ```
 
-### Cassandra
+## Cassandra
 
 ```bash
 python cassandra/benchmark.py
@@ -260,7 +263,9 @@ python cassandra/benchmark.py
 
 ---
 
-## Running All Experiments
+# Execução Completa
+
+Para executar todos os testes:
 
 ```bash
 ./scripts/run_all.sh
@@ -268,25 +273,27 @@ python cassandra/benchmark.py
 
 ---
 
-## System Information Collection
+# Coleta das Informações do Sistema
+
+Para registrar as características do ambiente utilizado:
 
 ```bash
 ./scripts/collect_system_info.sh
 ```
 
-The script collects:
+As seguintes informações serão coletadas:
 
-* CPU information
-* RAM information
-* Operating system version
-* Kernel version
-* Storage information
+* Processador
+* Memória RAM
+* Sistema Operacional
+* Kernel Linux
+* Armazenamento
 
 ---
 
-## Output Files
+# Arquivos Gerados
 
-Expected outputs:
+Após a execução dos testes, espera-se a geração dos seguintes arquivos:
 
 ```text
 results/
@@ -300,68 +307,68 @@ results/
 
 ---
 
-## Validation
+# Validação dos Resultados
 
-To verify the execution:
+Para verificar se os testes foram executados corretamente:
 
 ```bash
 python scripts/validate_results.py
 ```
 
-Expected output:
+Saída esperada:
 
 ```text
 PASS
 
-All benchmark executions completed successfully.
+Todos os benchmarks foram executados com sucesso.
 ```
 
 ---
 
-## Reproducibility Checklist
+# Checklist de Reprodutibilidade
 
-* [ ] Repository cloned
-* [ ] Dependencies installed
-* [ ] Java installed
-* [ ] Python installed
-* [ ] MongoDB configured
-* [ ] Redis configured
-* [ ] Cassandra configured
-* [ ] YCSB configured
-* [ ] Benchmark executed
-* [ ] Results generated
-* [ ] Results validated
-
----
-
-## Limitations
-
-Results may vary according to:
-
-* Processor model
-* Available memory
-* Storage device
-* Operating system
-* Background processes
-
-Relative performance trends should remain consistent.
+* [ ] Repositório clonado
+* [ ] Dependências instaladas
+* [ ] Java instalado
+* [ ] Python instalado
+* [ ] MongoDB configurado
+* [ ] Redis configurado
+* [ ] Cassandra configurado
+* [ ] YCSB configurado
+* [ ] Benchmark executado
+* [ ] Resultados gerados
+* [ ] Resultados validados
 
 ---
 
-## Citation
+# Limitações
 
-If you use this benchmark, please cite:
+Os resultados podem variar em função de:
+
+* Processador utilizado
+* Quantidade de memória disponível
+* Tipo de armazenamento
+* Sistema operacional
+* Processos executando em segundo plano
+
+Apesar disso, as tendências de desempenho observadas devem permanecer consistentes.
+
+---
+
+# Como Citar
+
+Caso utilize este benchmark em pesquisas futuras, cite:
 
 ```bibtex
-@misc{nosql_crypto_benchmark,
-  title={Benchmarking the Impact of Cryptographic Mechanisms on NoSQL Databases},
-  author={Author Names},
+@misc{benchmark_nosql_criptografia,
+  title={Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL},
+  author={Autores},
   year={2026}
 }
 ```
 
 ---
 
-## Contact
+# Contato
 
-For questions regarding the benchmark implementation or reproduction process, please contact the authors.
+Em caso de dúvidas sobre a implementação, execução ou reprodução dos experimentos, entre em contato com os autores do trabalho.
