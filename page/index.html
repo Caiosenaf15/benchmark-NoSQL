@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #003366;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: auto;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+        }
+
+        .box {
+            background: #f7f7f7;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+
+        <img src="src/" width="200">
+
+        <h1>
+            Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
+        </h1>
+
+        <h3>
+            Reprodutibilidade
+        </h3>
+
+    </div>
+
+    <hr>
+
+    <h2>Resumo</h2>
+
+    <p>
+        Esta página disponibiliza os artefatos utilizados no artigo
+        <b>"Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL"</b>.
+    </p>
+
+    <p>
+        O benchmark avalia o impacto de algoritmos criptográficos em três bancos
+        de dados NoSQL:
+    </p>
+
+    <ul>
+        <li>MongoDB</li>
+        <li>Redis</li>
+        <li>Apache Cassandra</li>
+    </ul>
+
+    <p>
+        Foram avaliados os algoritmos:
+    </p>
+
+    <ul>
+        <li>AES-256</li>
+        <li>SHA-256</li>
+        <li>HMAC-SHA256</li>
+        <li>bcrypt</li>
+        <li>Argon2</li>
+    </ul>
+
+    <hr>
+
+    <h2>Código-Fonte</h2>
+
+    <div class="box">
+
+        <p>
+            Todo o código utilizado nos experimentos está disponível no GitHub:
+        </p>
+
+        <p>
+            <a href="https://github.com/Caiosenaf15/benchmark-NoSQL" target="_blank">
+                https://github.com/Caiosenaf15/benchmark-NoSQL
+            </a>
+        </p>
+
+    </div>
+
+    <hr>
+
+    <h2>Documentação</h2>
+
+    <table>
+
+        <tr>
+            <th>Documento</th>
+            <th>Descrição</th>
+        </tr>
+
+        <tr>
+            <td><a href="../docs/metodologia.md">Metodologia</a></td>
+            <td>Descrição completa dos experimentos realizados.</td>
+        </tr>
+
+        <tr>
+            <td><a href="../docs/hardware.md">Hardware</a></td>
+            <td>Configuração do ambiente experimental.</td>
+        </tr>
+
+        <tr>
+            <td><a href="../docs/resultados.md">Resultados</a></td>
+            <td>Descrição dos arquivos de resultados utilizados no artigo.</td>
+        </tr>
+
+    </table>
+
+    <hr>
+
+    <h2>Reprodução dos Experimentos</h2>
+
+    <p>
+        Os experimentos podem ser reproduzidos em sistemas Linux ou Windows
+        utilizando os scripts disponibilizados no repositório.
+    </p>
+
+    <div class="box">
+
+        <b>1. Clonar o repositório</b>
+
+        <pre>
+git clone https://github.com/Caiosenaf15/benchmark-NoSQL.git
+cd benchmark-NoSQL
+        </pre>
+
+        <b>2. Instalar dependências</b>
+
+        <pre>
+pip install -r requirements.txt
+        </pre>
+
+        <b>3. Executar os benchmarks</b>
+
+        <pre>
+bash scripts/run_all.sh
+        </pre>
+
+    </div>
+
+    <hr>
+
+    <h2>Configuração Experimental</h2>
+
+    <table>
+
+        <tr>
+            <th>Item</th>
+            <th>Valor</th>
+        </tr>
+
+        <tr>
+            <td>YCSB</td>
+            <td>0.17.0</td>
+        </tr>
+
+        <tr>
+            <td>Operation Count</td>
+            <td>100000</td>
+        </tr>
+
+        <tr>
+            <td>Payloads Testados</td>
+            <td>64, 256, 1024 e 4096 bytes</td>
+        </tr>
+
+        <tr>
+            <td>Iterações Benchmark Criptográfico</td>
+            <td>10000</td>
+        </tr>
+
+    </table>
+
+    <hr>
+
+    <h2>Resultados Disponíveis</h2>
+
+    <p>
+        O repositório contém:
+    </p>
+
+    <ul>
+        <li>Resultados brutos dos benchmarks criptográficos</li>
+        <li>Resultados dos workloads YCSB</li>
+        <li>Scripts utilizados para coleta dos dados</li>
+        <li>Códigos-fonte dos benchmarks</li>
+    </ul>
+
+    <hr>
+
+    <h2>Citação</h2>
+
+    <pre>
+@article{benchmark_nosql_crypto_2026,
+  title={Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL},
+  author={Autores},
+  year={2026}
+}
+    </pre>
+
+    <hr>
+
+    <div class="center">
+        Última atualização: Junho de 2026
+    </div>
+
+</body>
+
+</html>
