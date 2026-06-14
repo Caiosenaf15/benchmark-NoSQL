@@ -1,8 +1,6 @@
-Ok, então mantenha PDFs (ou nada) em docs/ para visualização, mas no index.html vou linkar para os PDFs já que ele roda no navegador. Os nomes em results/ e src/ confirmam que estão corretos — coincide com o que usei no index.html.
-Aqui está o README.md completo atualizado:
-markdown# Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
+# Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
 
-## Pacote de Reprodutibilidade
+## Reprodutibilidade
 
 Este repositório contém os artefatos necessários para reproduzir os experimentos realizados no artigo sobre o impacto de mecanismos criptográficos no desempenho de bancos de dados NoSQL.
 
