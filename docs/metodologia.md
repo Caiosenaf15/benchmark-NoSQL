@@ -91,26 +91,6 @@ Além dos testes criptográficos personalizados, foi utilizado o Yahoo! Cloud Se
 
 - operationcount=100000
 
-### Workloads Utilizados
-
-#### Workload A
-
-- 50% leitura
-- 50% atualização
-
-#### Workload B
-
-- 95% leitura
-- 5% atualização
-
-#### Workload C
-
-- 100% leitura
-
-#### Workload D
-
-- Read Latest
-
 ---
 
 ## Procedimento Experimental
