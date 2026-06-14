@@ -1,0 +1,32 @@
+Command line: -load -db site.ycsb.db.RedisClient -P workloads/workloada -p recordcount=100000 -p redis.host=localhost -p redis.port=6379 -s
+YCSB Client 0.17.0
+
+Loading workload...
+Starting test.
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+2026-05-20 19:09:58:862 0 sec: 0 operations; est completion in 0 second [INSERT: Count=1, Max=2675, Min=2674, Avg=2675, 90=2675, 99=2675, 99.9=2675, 99.99=2675] 
+2026-05-20 19:10:00:957 2 sec: 100000 operations; 47348,48 current ops/sec; [CLEANUP: Count=1, Max=422, Min=422, Avg=422, 90=422, 99=422, 99.9=422, 99.99=422] [INSERT: Count=99999, Max=4041, Min=16, Avg=19,93, 90=21, 99=29, 99.9=224, 99.99=338] 
+[OVERALL], RunTime(ms), 2112
+[OVERALL], Throughput(ops/sec), 47348.48484848485
+[TOTAL_GCS_G1_Young_Generation], Count, 5
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 9
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.4261363636363636
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 5
+[TOTAL_GC_TIME], Time(ms), 9
+[TOTAL_GC_TIME_%], Time(%), 0.4261363636363636
+[CLEANUP], Operations, 1
+[CLEANUP], AverageLatency(us), 422.0
+[CLEANUP], MinLatency(us), 422
+[CLEANUP], MaxLatency(us), 422
+[CLEANUP], 95thPercentileLatency(us), 422
+[CLEANUP], 99thPercentileLatency(us), 422
+[INSERT], Operations, 100000
+[INSERT], AverageLatency(us), 19.95232
+[INSERT], MinLatency(us), 16
+[INSERT], MaxLatency(us), 4041
+[INSERT], 95thPercentileLatency(us), 23
+[INSERT], 99thPercentileLatency(us), 29
+[INSERT], Return=OK, 100000

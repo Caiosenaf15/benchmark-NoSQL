@@ -1,0 +1,10 @@
+pymongo
+redis
+cassandra-driver
+cryptography
+bcrypt
+argon2-cffi
+psutil
+pandas
+numpy
+matplotlib

@@ -1,0 +1,43 @@
+Command line: -load -db site.ycsb.db.CassandraCQLClient -P workloads/workloada -p recordcount=100000 -p hosts=localhost -p cassandra.keyspace=ycsb -s
+YCSB Client 0.17.0
+
+Loading workload...
+Starting test.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2026-05-21 21:22:46:682 0 sec: 0 operations; est completion in 0 second 
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.PlatformDependent0 (file:/root/ycsb/cassandra-binding/lib/netty-common-4.0.33.Final.jar) to field java.nio.Buffer.address
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.PlatformDependent0
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+mai 21, 2026 9:22:46 PM io.netty.util.internal.PlatformDependent <clinit>
+INFO: Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+2026-05-21 21:22:56:664 10 sec: 79636 operations; 7963,6 current ops/sec; est completion in 3 second [INSERT: Count=79645, Max=40927, Min=48, Avg=120,63, 90=146, 99=295, 99.9=820, 99.99=1247] 
+2026-05-21 21:23:01:156 14 sec: 100000 operations; 4533,39 current ops/sec; [CLEANUP: Count=1, Max=2217983, Min=2215936, Avg=2216960, 90=2217983, 99=2217983, 99.9=2217983, 99.99=2217983] [INSERT: Count=20355, Max=2943, Min=53, Avg=110,61, 90=136, 99=154, 99.9=213, 99.99=270] 
+[OVERALL], RunTime(ms), 14492
+[OVERALL], Throughput(ops/sec), 6900.35881865857
+[TOTAL_GCS_G1_Young_Generation], Count, 6
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 20
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.1380071763731714
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 6
+[TOTAL_GC_TIME], Time(ms), 20
+[TOTAL_GC_TIME_%], Time(%), 0.1380071763731714
+[CLEANUP], Operations, 1
+[CLEANUP], AverageLatency(us), 2216960.0
+[CLEANUP], MinLatency(us), 2215936
+[CLEANUP], MaxLatency(us), 2217983
+[CLEANUP], 95thPercentileLatency(us), 2217983
+[CLEANUP], 99thPercentileLatency(us), 2217983
+[INSERT], Operations, 100000
+[INSERT], AverageLatency(us), 118.59409
+[INSERT], MinLatency(us), 48
+[INSERT], MaxLatency(us), 40927
+[INSERT], 95thPercentileLatency(us), 155
+[INSERT], 99thPercentileLatency(us), 260
+[INSERT], Return=OK, 100000

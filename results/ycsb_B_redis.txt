@@ -1,0 +1,39 @@
+Command line: -t -db site.ycsb.db.RedisClient -P workloads/workloada -p operationcount=100000 -p redis.host=localhost -p redis.port=6379 -s
+YCSB Client 0.17.0
+
+Loading workload...
+Starting test.
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+2026-05-20 19:12:45:092 0 sec: 0 operations; est completion in 0 second [UPDATE: Count=1, Max=2339, Min=2338, Avg=2339, 90=2339, 99=2339, 99.9=2339, 99.99=2339] 
+2026-05-20 19:12:46:035 0 sec: 100000 operations; 104275,29 current ops/sec; [READ: Count=49755, Max=2185, Min=7, Avg=8,99, 90=10, 99=15, 99.9=210, 99.99=275] [CLEANUP: Count=1, Max=392, Min=392, Avg=392, 90=392, 99=392, 99.9=392, 99.99=392] [UPDATE: Count=50244, Max=3369, Min=6, Avg=7,81, 90=9, 99=19, 99.9=65, 99.99=251] 
+[OVERALL], RunTime(ms), 959
+[OVERALL], Throughput(ops/sec), 104275.28675703859
+[TOTAL_GCS_G1_Young_Generation], Count, 2
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 4
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.4171011470281543
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 2
+[TOTAL_GC_TIME], Time(ms), 4
+[TOTAL_GC_TIME_%], Time(%), 0.4171011470281543
+[READ], Operations, 49755
+[READ], AverageLatency(us), 8.99256356145111
+[READ], MinLatency(us), 7
+[READ], MaxLatency(us), 2185
+[READ], 95thPercentileLatency(us), 10
+[READ], 99thPercentileLatency(us), 15
+[READ], Return=OK, 49755
+[CLEANUP], Operations, 1
+[CLEANUP], AverageLatency(us), 392.0
+[CLEANUP], MinLatency(us), 392
+[CLEANUP], MaxLatency(us), 392
+[CLEANUP], 95thPercentileLatency(us), 392
+[CLEANUP], 99thPercentileLatency(us), 392
+[UPDATE], Operations, 50245
+[UPDATE], AverageLatency(us), 7.851447905264205
+[UPDATE], MinLatency(us), 6
+[UPDATE], MaxLatency(us), 3369
+[UPDATE], 95thPercentileLatency(us), 9
+[UPDATE], 99thPercentileLatency(us), 19
+[UPDATE], Return=OK, 50245

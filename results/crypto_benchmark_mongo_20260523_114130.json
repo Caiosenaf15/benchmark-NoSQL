@@ -1,0 +1,366 @@
+{
+  "timestamp": "20260523_114130",
+  "db": "mongodb",
+  "results": {
+    "size_64": [
+      {
+        "test": "insert_aes256",
+        "iterations": 10000,
+        "total_s": 1.0804,
+        "ops_per_sec": 9256.09,
+        "avg_ms": 0.108,
+        "avg_cpu_pct": 7.3,
+        "avg_ram_pct": 3.0,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.0
+      },
+      {
+        "test": "insert_sha256",
+        "iterations": 10000,
+        "total_s": 0.7686,
+        "ops_per_sec": 13010.34,
+        "avg_ms": 0.0769,
+        "avg_cpu_pct": 8.77,
+        "avg_ram_pct": 3.0,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.0
+      },
+      {
+        "test": "insert_bcrypt",
+        "iterations": 10000,
+        "total_s": 495.3506,
+        "ops_per_sec": 20.19,
+        "avg_ms": 49.5351,
+        "avg_cpu_pct": 8.33,
+        "avg_ram_pct": 3.0,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.0
+      },
+      {
+        "test": "insert_argon2",
+        "iterations": 10000,
+        "total_s": 323.5238,
+        "ops_per_sec": 30.91,
+        "avg_ms": 32.3524,
+        "avg_cpu_pct": 15.17,
+        "avg_ram_pct": 3.13,
+        "peak_cpu": 19.4,
+        "peak_ram": 3.3
+      },
+      {
+        "test": "read_decrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.9888,
+        "ops_per_sec": 10113.37,
+        "avg_ms": 0.0989,
+        "avg_cpu_pct": 8.79,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "read_verify_sha256",
+        "iterations": 10000,
+        "total_s": 0.861,
+        "ops_per_sec": 11614.74,
+        "avg_ms": 0.0861,
+        "avg_cpu_pct": 9.09,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "update_reencrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.8812,
+        "ops_per_sec": 11348.17,
+        "avg_ms": 0.0881,
+        "avg_cpu_pct": 8.7,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "delete_encrypted_record",
+        "iterations": 10000,
+        "total_s": 0.6832,
+        "ops_per_sec": 14637.77,
+        "avg_ms": 0.0683,
+        "avg_cpu_pct": 8.5,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 10.0,
+        "peak_ram": 3.1
+      }
+    ],
+    "size_256": [
+      {
+        "test": "insert_aes256",
+        "iterations": 10000,
+        "total_s": 1.5094,
+        "ops_per_sec": 6624.94,
+        "avg_ms": 0.1509,
+        "avg_cpu_pct": 7.67,
+        "avg_ram_pct": 3.0,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.0
+      },
+      {
+        "test": "insert_sha256",
+        "iterations": 10000,
+        "total_s": 1.0946,
+        "ops_per_sec": 9135.98,
+        "avg_ms": 0.1095,
+        "avg_cpu_pct": 8.95,
+        "avg_ram_pct": 3.09,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "insert_bcrypt",
+        "iterations": 10000,
+        "total_s": 495.0789,
+        "ops_per_sec": 20.2,
+        "avg_ms": 49.5079,
+        "avg_cpu_pct": 8.33,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "insert_argon2",
+        "iterations": 10000,
+        "total_s": 324.3266,
+        "ops_per_sec": 30.83,
+        "avg_ms": 32.4327,
+        "avg_cpu_pct": 15.18,
+        "avg_ram_pct": 3.19,
+        "peak_cpu": 19.0,
+        "peak_ram": 3.3
+      },
+      {
+        "test": "read_decrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.9911,
+        "ops_per_sec": 10089.99,
+        "avg_ms": 0.0991,
+        "avg_cpu_pct": 8.53,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "read_verify_sha256",
+        "iterations": 10000,
+        "total_s": 0.8453,
+        "ops_per_sec": 11830.25,
+        "avg_ms": 0.0845,
+        "avg_cpu_pct": 8.81,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 9.8,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "update_reencrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.8849,
+        "ops_per_sec": 11300.99,
+        "avg_ms": 0.0885,
+        "avg_cpu_pct": 8.51,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "delete_encrypted_record",
+        "iterations": 10000,
+        "total_s": 0.6755,
+        "ops_per_sec": 14803.07,
+        "avg_ms": 0.0676,
+        "avg_cpu_pct": 8.38,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 9.8,
+        "peak_ram": 3.1
+      }
+    ],
+    "size_1024": [
+      {
+        "test": "insert_aes256",
+        "iterations": 10000,
+        "total_s": 1.1416,
+        "ops_per_sec": 8759.98,
+        "avg_ms": 0.1142,
+        "avg_cpu_pct": 7.27,
+        "avg_ram_pct": 3.1,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.1
+      },
+      {
+        "test": "insert_sha256",
+        "iterations": 10000,
+        "total_s": 0.7703,
+        "ops_per_sec": 12981.65,
+        "avg_ms": 0.077,
+        "avg_cpu_pct": 8.57,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.2
+      },
+      {
+        "test": "insert_bcrypt",
+        "iterations": 10000,
+        "total_s": 494.8225,
+        "ops_per_sec": 20.21,
+        "avg_ms": 49.4822,
+        "avg_cpu_pct": 8.33,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.2
+      },
+      {
+        "test": "insert_argon2",
+        "iterations": 10000,
+        "total_s": 323.6671,
+        "ops_per_sec": 30.9,
+        "avg_ms": 32.3667,
+        "avg_cpu_pct": 15.17,
+        "avg_ram_pct": 3.29,
+        "peak_cpu": 18.3,
+        "peak_ram": 3.4
+      },
+      {
+        "test": "read_decrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.9958,
+        "ops_per_sec": 10042.63,
+        "avg_ms": 0.0996,
+        "avg_cpu_pct": 8.57,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.2
+      },
+      {
+        "test": "read_verify_sha256",
+        "iterations": 10000,
+        "total_s": 0.8536,
+        "ops_per_sec": 11714.9,
+        "avg_ms": 0.0854,
+        "avg_cpu_pct": 8.68,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.2
+      },
+      {
+        "test": "update_reencrypt_aes256",
+        "iterations": 10000,
+        "total_s": 0.8911,
+        "ops_per_sec": 11221.82,
+        "avg_ms": 0.0891,
+        "avg_cpu_pct": 8.46,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 10.0,
+        "peak_ram": 3.2
+      },
+      {
+        "test": "delete_encrypted_record",
+        "iterations": 10000,
+        "total_s": 0.6598,
+        "ops_per_sec": 15155.66,
+        "avg_ms": 0.066,
+        "avg_cpu_pct": 8.51,
+        "avg_ram_pct": 3.2,
+        "peak_cpu": 10.0,
+        "peak_ram": 3.2
+      }
+    ],
+    "size_4096": [
+      {
+        "test": "insert_aes256",
+        "iterations": 10000,
+        "total_s": 1.2438,
+        "ops_per_sec": 8039.56,
+        "avg_ms": 0.1244,
+        "avg_cpu_pct": 7.28,
+        "avg_ram_pct": 3.28,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.4
+      },
+      {
+        "test": "insert_sha256",
+        "iterations": 10000,
+        "total_s": 0.8971,
+        "ops_per_sec": 11147.2,
+        "avg_ms": 0.0897,
+        "avg_cpu_pct": 9.28,
+        "avg_ram_pct": 3.61,
+        "peak_cpu": 11.3,
+        "peak_ram": 3.8
+      },
+      {
+        "test": "insert_bcrypt",
+        "iterations": 10000,
+        "total_s": 495.159,
+        "ops_per_sec": 20.2,
+        "avg_ms": 49.5159,
+        "avg_cpu_pct": 8.34,
+        "avg_ram_pct": 3.71,
+        "peak_cpu": 11.9,
+        "peak_ram": 3.8
+      },
+      {
+        "test": "insert_argon2",
+        "iterations": 10000,
+        "total_s": 322.2744,
+        "ops_per_sec": 31.03,
+        "avg_ms": 32.2274,
+        "avg_cpu_pct": 15.18,
+        "avg_ram_pct": 3.87,
+        "peak_cpu": 19.0,
+        "peak_ram": 4.0
+      },
+      {
+        "test": "read_decrypt_aes256",
+        "iterations": 10000,
+        "total_s": 1.0951,
+        "ops_per_sec": 9131.99,
+        "avg_ms": 0.1095,
+        "avg_cpu_pct": 8.78,
+        "avg_ram_pct": 3.7,
+        "peak_cpu": 12.5,
+        "peak_ram": 3.7
+      },
+      {
+        "test": "read_verify_sha256",
+        "iterations": 10000,
+        "total_s": 0.9246,
+        "ops_per_sec": 10815.73,
+        "avg_ms": 0.0925,
+        "avg_cpu_pct": 8.45,
+        "avg_ram_pct": 3.7,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.7
+      },
+      {
+        "test": "update_reencrypt_aes256",
+        "iterations": 10000,
+        "total_s": 1.0073,
+        "ops_per_sec": 9927.09,
+        "avg_ms": 0.1007,
+        "avg_cpu_pct": 9.21,
+        "avg_ram_pct": 3.7,
+        "peak_cpu": 12.7,
+        "peak_ram": 3.7
+      },
+      {
+        "test": "delete_encrypted_record",
+        "iterations": 10000,
+        "total_s": 0.6607,
+        "ops_per_sec": 15134.39,
+        "avg_ms": 0.0661,
+        "avg_cpu_pct": 8.37,
+        "avg_ram_pct": 3.7,
+        "peak_cpu": 11.5,
+        "peak_ram": 3.7
+      }
+    ]
+  }
+}
