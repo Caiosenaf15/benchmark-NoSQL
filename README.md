@@ -1,40 +1,116 @@
-# Pacote de Reprodutibilidade
+# Reprodutibilidade
 
-## Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
+# Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL
 
-Este repositório contém todo o material necessário para reproduzir os experimentos realizados no estudo sobre o impacto de mecanismos criptográficos no desempenho de bancos de dados NoSQL.
+## Pacote de Reprodutibilidade
 
-O benchmark avalia o custo computacional introduzido por técnicas de criptografia, hashing e autenticação quando integradas às operações de inserção, leitura, atualização e remoção de dados.
+Este repositório contém os artefatos necessários para reproduzir os experimentos realizados no artigo sobre o impacto de mecanismos criptográficos no desempenho de bancos de dados NoSQL.
+
+O objetivo do estudo é avaliar o custo computacional introduzido por algoritmos de criptografia, hashing e autenticação quando aplicados a operações comuns de armazenamento e recuperação de dados.
 
 ---
 
 # Visão Geral
 
-A proteção de informações sensíveis é um requisito fundamental em sistemas modernos. Entretanto, a aplicação de mecanismos criptográficos pode introduzir sobrecarga computacional e impactar o desempenho dos bancos de dados.
+A proteção de informações sensíveis é um requisito fundamental em sistemas modernos. Entretanto, mecanismos criptográficos podem introduzir sobrecarga computacional e impactar o desempenho dos sistemas de armazenamento.
 
-Este benchmark foi desenvolvido para analisar esse impacto em diferentes bancos de dados NoSQL utilizando algoritmos amplamente empregados na indústria.
+Este benchmark foi desenvolvido para medir esse impacto em diferentes bancos de dados NoSQL utilizando algoritmos amplamente empregados em aplicações reais.
 
-## Bancos de Dados Avaliados
+---
 
-* MongoDB
-* Redis
-* Apache Cassandra
+# Bancos de Dados Avaliados
 
-## Algoritmos Avaliados
+- MongoDB
+- Redis
+- Apache Cassandra
 
-### Criptografia
+---
 
-* AES-256
+# Algoritmos Avaliados
 
-### Hash
+## Criptografia
 
-* SHA-256
-* bcrypt
-* Argon2
+- AES-256
 
-### Autenticação
+## Hash
 
-* HMAC-SHA256
+- SHA-256
+- bcrypt
+- Argon2
+
+## Autenticação
+
+- HMAC-SHA256
+
+---
+
+# Operações Avaliadas
+
+## Inserção
+
+- insert_aes256
+- insert_sha256
+- insert_hmac_sha256
+- insert_bcrypt
+- insert_argon2
+
+## Leitura
+
+- read_decrypt_aes256
+- read_verify_sha256
+
+## Atualização
+
+- update_reencrypt_aes256
+
+## Remoção
+
+- delete_encrypted_record
+
+---
+
+# Configuração Experimental
+
+## Benchmark Criptográfico
+
+### Iterações
+
+10000 execuções por operação.
+
+### Tamanhos dos Dados
+
+- 64 bytes
+- 256 bytes
+- 1024 bytes
+- 4096 bytes
+
+### Métricas Coletadas
+
+- Throughput (operações por segundo)
+- Tempo médio de execução
+- Latência
+
+---
+
+# Benchmark YCSB
+
+Além dos benchmarks criptográficos personalizados, foi utilizado o Yahoo! Cloud Serving Benchmark (YCSB) para avaliar os bancos sob cargas de trabalho padronizadas.
+
+## Ferramenta
+
+- YCSB 0.17.0
+
+## Configuração
+
+```text
+operationcount=100000
+```
+
+Os workloads utilizados foram os workloads padrão disponibilizados pelo projeto YCSB.
+
+Repositório oficial:
+
+https://github.com/brianfrankcooper/YCSB
 
 ---
 
@@ -42,140 +118,55 @@ Este benchmark foi desenvolvido para analisar esse impacto em diferentes bancos 
 
 ## Hardware
 
-| Componente     | Especificação        |
-| -------------- | -------------------- |
-| Processador    | Intel Core i5-12400F |
-| Memória RAM    | 32 GB DDR4           |
-| Placa de Vídeo | NVIDIA RTX 4060      |
-| Armazenamento  | SSD                  |
+| Componente | Especificação |
+|------------|--------------|
+| Processador | Intel Core i5-12400F |
+| Memória RAM | 32 GB DDR4 |
+| Placa de Vídeo | NVIDIA GeForce RTX 4060 |
+| Armazenamento | SSD |
+| Arquitetura | x86_64 |
 
 ## Sistema Operacional
 
-| Componente          | Versão                         |
-| ------------------- | ------------------------------ |
+| Componente | Versão |
+|------------|---------|
 | Sistema Operacional | Debian GNU/Linux 12 (Bookworm) |
-| Kernel Linux        | 6.x                            |
 
 ---
 
-# Versões dos Softwares
+# Softwares Utilizados
 
-| Software  | Versão |
-| --------- | ------ |
-| Python    | 3.x    |
-| Java      | 21     |
-| MongoDB   | 7.x    |
-| Redis     | 7.x    |
-| Cassandra | 5.x    |
-| YCSB      | 0.17.0 |
-
----
-
-# Escopo do Benchmark
-
-O benchmark avalia operações criptográficas aplicadas diretamente às operações de banco de dados.
-
-## Operações de Criptografia
-
-* Criptografia AES-256
-* Descriptografia AES-256
-
-## Operações de Hash
-
-* SHA-256
-* bcrypt
-* Argon2
-
-## Operações de Autenticação
-
-* HMAC-SHA256
-
----
-
-# Operações Avaliadas
-
-| Operação                | Descrição                          |
-| ----------------------- | ---------------------------------- |
-| insert_aes256           | Criptografar e inserir registro    |
-| insert_sha256           | Gerar hash SHA-256 e inserir       |
-| insert_hmac_sha256      | Gerar HMAC e inserir               |
-| insert_bcrypt           | Gerar hash bcrypt e inserir        |
-| insert_argon2           | Gerar hash Argon2 e inserir        |
-| read_decrypt_aes256     | Ler e descriptografar              |
-| read_verify_sha256      | Ler e verificar hash               |
-| update_reencrypt_aes256 | Atualizar e criptografar novamente |
-| delete_encrypted_record | Remover registro criptografado     |
-
----
-
-# Geração das Cargas de Trabalho
-
-Os testes utilizam o framework YCSB (Yahoo! Cloud Serving Benchmark), amplamente utilizado para avaliação de desempenho em bancos de dados.
-
-## Versão
-
-* YCSB 0.17.0
-
-## Workloads Utilizados
-
-### Workload A
-
-* 50% Leituras
-* 50% Atualizações
-
-### Workload B
-
-* 95% Leituras
-* 5% Atualizações
-
-### Workload C
-
-* 100% Leituras
-
-### Workload D
-
-* Read Latest
-
----
-
-# Dados Utilizados
-
-Nenhum conjunto de dados externo foi utilizado nos experimentos finais.
-
-Todos os registros utilizados nos testes foram gerados e manipulados pelo YCSB.
-
-Os resultados apresentados neste trabalho foram produzidos exclusivamente a partir dos workloads padronizados fornecidos pelo YCSB.
+| Software | Versão |
+|-----------|---------|
+| Python | 3.x |
+| Java | 21 |
+| MongoDB | 7.x |
+| Redis | 7.x |
+| Apache Cassandra | 5.x |
+| YCSB | 0.17.0 |
 
 ---
 
 # Estrutura do Repositório
 
 ```text
-benchmark/
+benchmark-NoSQL/
 
-├── README.md
-│
-├── scripts/
-│   ├── benchmark_crypto.py
-│   ├── run_all.sh
-│   ├── collect_system_info.sh
-│   └── validate_results.py
-│
-├── mongodb/
-│
-├── redis/
-│
-├── cassandra/
-│
-├── workloads/
-│   ├── workload_a
-│   ├── workload_b
-│   ├── workload_c
-│   └── workload_d
-│
-├── results/
-│
-└── docs/
+README.md
+LICENSE
+requirements.txt
+
+scripts/
+
+mongodb/
+
+redis/
+
+cassandra/
+
+results/
+
+docs/
 ```
 
 ---
@@ -184,27 +175,15 @@ benchmark/
 
 ## Linux
 
-Atualize os pacotes:
-
-```bash
-sudo apt update
-```
-
-Instale as dependências:
-
-```bash
-sudo apt install python3 python3-pip openjdk-21-jdk git
-```
-
 Clone o repositório:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/Caiosenaf15/benchmark-NoSQL.git
 
-cd benchmark
+cd benchmark-NoSQL
 ```
 
-Instale as dependências Python:
+Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
@@ -214,23 +193,18 @@ pip install -r requirements.txt
 
 ## Windows
 
-Recomenda-se:
-
-* Docker Desktop
-* WSL2 (Ubuntu)
-
 Instale:
 
-* Python 3.x
-* Java 21
-* Git
+- Python 3.x
+- Java 21
+- Git
 
 Clone o repositório:
 
 ```powershell
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/Caiosenaf15/benchmark-NoSQL.git
 
-cd benchmark
+cd benchmark-NoSQL
 ```
 
 Instale as dependências:
@@ -241,7 +215,7 @@ pip install -r requirements.txt
 
 ---
 
-# Execução dos Testes
+# Execução dos Experimentos
 
 ## MongoDB
 
@@ -265,79 +239,60 @@ python cassandra/benchmark.py
 
 # Execução Completa
 
-Para executar todos os testes:
+Caso o script esteja disponível:
 
 ```bash
-./scripts/run_all.sh
+bash scripts/run_all.sh
 ```
 
 ---
 
-# Coleta das Informações do Sistema
+# Resultados
 
-Para registrar as características do ambiente utilizado:
-
-```bash
-./scripts/collect_system_info.sh
-```
-
-As seguintes informações serão coletadas:
-
-* Processador
-* Memória RAM
-* Sistema Operacional
-* Kernel Linux
-* Armazenamento
-
----
-
-# Arquivos Gerados
-
-Após a execução dos testes, espera-se a geração dos seguintes arquivos:
+Os resultados gerados pelos experimentos encontram-se na pasta:
 
 ```text
 results/
-
-├── mongodb_results.json
-├── redis_results.json
-├── cassandra_results.json
-├── system_info.txt
-└── benchmark_summary.csv
 ```
+
+Os arquivos incluem:
+
+- Resultados dos benchmarks criptográficos
+- Resultados do YCSB
+- Arquivos JSON de saída
+- Métricas de desempenho utilizadas no artigo
 
 ---
 
-# Validação dos Resultados
+# Documentação
 
-Para verificar se os testes foram executados corretamente:
-
-```bash
-python scripts/validate_results.py
-```
-
-Saída esperada:
+Documentos complementares disponíveis em:
 
 ```text
-PASS
+docs/
 
-Todos os benchmarks foram executados com sucesso.
+metodologia.pdf
+hardware.pdf
+resultados.pdf
 ```
+
+Esses documentos descrevem:
+
+- Metodologia experimental
+- Configuração do ambiente
+- Organização e interpretação dos resultados
 
 ---
 
-# Checklist de Reprodutibilidade
+# Reprodutibilidade
 
-* [ ] Repositório clonado
-* [ ] Dependências instaladas
-* [ ] Java instalado
-* [ ] Python instalado
-* [ ] MongoDB configurado
-* [ ] Redis configurado
-* [ ] Cassandra configurado
-* [ ] YCSB configurado
-* [ ] Benchmark executado
-* [ ] Resultados gerados
-* [ ] Resultados validados
+Todos os scripts utilizados para gerar os resultados apresentados no artigo estão disponíveis neste repositório.
+
+Os resultados brutos utilizados para produzir tabelas, gráficos e análises também estão disponíveis para consulta.
+
+Pequenas variações podem ocorrer devido a diferenças de hardware, sistema operacional ou carga da máquina durante a execução dos testes.
+
+Entretanto, as tendências observadas devem permanecer consistentes.
 
 ---
 
@@ -345,30 +300,32 @@ Todos os benchmarks foram executados com sucesso.
 
 Os resultados podem variar em função de:
 
-* Processador utilizado
-* Quantidade de memória disponível
-* Tipo de armazenamento
-* Sistema operacional
-* Processos executando em segundo plano
-
-Apesar disso, as tendências de desempenho observadas devem permanecer consistentes.
+- Processador utilizado
+- Quantidade de memória disponível
+- Tipo de armazenamento
+- Sistema operacional
+- Processos executados em segundo plano
 
 ---
 
-# Como Citar
+# Licença
 
-Caso utilize este benchmark em pesquisas futuras, cite:
+Este projeto está disponibilizado para fins acadêmicos e de pesquisa.
 
-```bibtex
-@misc{benchmark_nosql_criptografia,
-  title={Benchmark do Impacto de Mecanismos Criptográficos em Bancos de Dados NoSQL},
-  author={Autores},
-  year={2026}
-}
-```
+Consulte o arquivo LICENSE para mais informações.
 
 ---
 
-# Contato
+# Autores
+
+Caio Sena
+e
+Pedro Henrique Tavares
+
+CEFET-RJ
+
+Curso de Sistemas de Informação
+
+2026
 
 Em caso de dúvidas sobre a implementação, execução ou reprodução dos experimentos, entre em contato com os autores do trabalho.
