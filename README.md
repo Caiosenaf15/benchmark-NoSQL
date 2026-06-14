@@ -319,6 +319,8 @@ Consulte o arquivo LICENSE para mais informações.
 # Autores
 
 Caio Sena
+e
+Pedro Henrique Tavares
 
 CEFET-RJ
 
