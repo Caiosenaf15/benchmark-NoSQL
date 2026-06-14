@@ -1,83 +1,79 @@
+
+---
+
+# hardware.md
+
+```markdown
 # Ambiente Experimental
 
-## Hardware
+## Objetivo
 
-Os experimentos foram executados em uma máquina dedicada com a seguinte configuração:
+Esta seção documenta o ambiente utilizado durante a execução dos experimentos.
+
+O detalhamento do hardware e software é fundamental para garantir a reprodutibilidade dos resultados e permitir comparações futuras.
+
+---
+
+# Hardware
+
+Os experimentos foram executados em uma máquina dedicada, evitando interferências externas significativas durante a coleta dos dados.
 
 | Componente | Especificação |
 |------------|--------------|
 | Processador | Intel Core i5-12400F |
-| Núcleos | 6 núcleos físicos / 12 threads |
-| Memória RAM | 32 GB DDR4 |
-| Placa de Vídeo | NVIDIA GeForce RTX 4060 |
-| Armazenamento | SSD |
 | Arquitetura | x86_64 |
+| Núcleos Físicos | 6 |
+| Threads | 12 |
+| Memória RAM | 32 GB DDR4 |
+| GPU | NVIDIA GeForce RTX 4060 |
+| Armazenamento | SSD |
 
 ---
 
-## Sistema Operacional
+# Sistema Operacional
 
 | Componente | Versão |
 |------------|---------|
-| Sistema Operacional | Debian GNU/Linux 12 (Bookworm) |
+| Distribuição | Debian GNU/Linux 12 (Bookworm) |
 | Kernel Linux | 6.x |
 
 ---
 
-## Softwares Utilizados
+# Linguagens e Ferramentas
 
-### Linguagens e Runtime
+## Python
 
-| Software | Versão |
-|-----------|---------|
-| Python | 3.x |
-| Java | 21 |
+Responsável pela implementação dos benchmarks criptográficos e automação dos experimentos.
 
-### Bancos de Dados
+## Java
 
-| Banco | Versão |
-|--------|---------|
-| MongoDB | 7.x |
-| Redis | 7.x |
-| Apache Cassandra | 5.x |
-
-### Ferramentas
-
-| Ferramenta | Versão |
-|------------|---------|
-| YCSB | 0.17.0 |
+Necessário para execução do YCSB.
 
 ---
 
-## Configuração dos Bancos
+# Bancos de Dados
 
-### MongoDB
+## MongoDB
 
-- Instalação local
-- Configuração padrão
-- Execução standalone
+Banco orientado a documentos utilizado nos experimentos.
 
-### Redis
+## Redis
 
-- Instalação local
-- Configuração padrão
-- Execução standalone
+Banco chave-valor utilizado para avaliação de cenários de baixa latência.
 
-### Apache Cassandra
+## Apache Cassandra
 
-- Instalação local
-- Cluster de nó único
+Banco distribuído utilizado para avaliação de ambientes escaláveis.
 
 ---
 
-## Observações
+# Ferramentas Auxiliares
 
-Os resultados podem variar de acordo com:
+## Yahoo! Cloud Serving Benchmark (YCSB)
 
-- Processador utilizado
-- Quantidade de memória disponível
-- Tipo de armazenamento
-- Sistema operacional
-- Processos executados em segundo plano
+Ferramenta utilizada para geração de cargas de trabalho padronizadas.
 
-Entretanto, as tendências observadas durante os experimentos devem permanecer consistentes quando reproduzidas em ambientes equivalentes.
+Versão utilizada:
+
+```text
+0.17.0

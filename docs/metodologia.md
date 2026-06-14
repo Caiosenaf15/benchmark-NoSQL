@@ -1,127 +1,139 @@
 # Metodologia Experimental
 
-## Objetivo
+## Introdução
 
-Este benchmark foi desenvolvido para avaliar o impacto de mecanismos criptográficos no desempenho de bancos de dados NoSQL.
+A crescente adoção de bancos de dados NoSQL em aplicações distribuídas e sistemas de grande escala tem aumentado a preocupação com a proteção de dados sensíveis armazenados nesses ambientes.
 
-Foram analisados três sistemas amplamente utilizados:
+Embora mecanismos criptográficos sejam amplamente utilizados para garantir confidencialidade, integridade e autenticidade, sua aplicação pode introduzir sobrecarga computacional e impactar diretamente o desempenho do sistema.
 
-- MongoDB
-- Redis
-- Apache Cassandra
-
-O objetivo principal é medir o custo computacional introduzido por algoritmos de criptografia, hashing e autenticação quando aplicados a operações comuns de persistência de dados.
+Este trabalho investiga quantitativamente esse impacto por meio de uma série de experimentos controlados realizados em diferentes bancos de dados NoSQL.
 
 ---
 
-## Algoritmos Avaliados
+# Objetivo
 
-Foram avaliados os seguintes mecanismos criptográficos:
+O objetivo principal deste benchmark é avaliar o custo computacional introduzido por mecanismos criptográficos amplamente utilizados em aplicações modernas.
 
-### Criptografia
+Os experimentos buscam responder às seguintes questões:
 
-- AES-256
-
-### Hash
-
-- SHA-256
-- bcrypt
-- Argon2
-
-### Autenticação
-
-- HMAC-SHA256
+- Qual o impacto da criptografia no throughput dos bancos NoSQL?
+- Como algoritmos de hash afetam o tempo de resposta das operações?
+- Qual a diferença de desempenho entre mecanismos de autenticação e criptografia?
+- Como diferentes bancos de dados reagem à aplicação desses mecanismos?
 
 ---
 
-## Operações Avaliadas
+# Bancos de Dados Avaliados
 
-As seguintes operações foram implementadas e medidas:
+Os experimentos foram realizados utilizando três bancos de dados NoSQL amplamente adotados pela indústria.
 
-| Operação | Descrição |
-|-----------|------------|
-| insert_aes256 | Criptografar e inserir dados |
-| insert_sha256 | Gerar hash SHA-256 e inserir |
-| insert_hmac_sha256 | Gerar HMAC e inserir |
-| insert_bcrypt | Gerar hash bcrypt e inserir |
-| insert_argon2 | Gerar hash Argon2 e inserir |
-| read_decrypt_aes256 | Ler e descriptografar |
-| read_verify_sha256 | Ler e verificar hash |
-| update_reencrypt_aes256 | Atualizar e criptografar novamente |
-| delete_encrypted_record | Remover registro |
+## MongoDB
 
----
+Banco de dados orientado a documentos que utiliza estruturas JSON/BSON para armazenamento dos dados.
 
-## Benchmark Criptográfico
+## Redis
 
-Cada operação foi executada múltiplas vezes para reduzir efeitos de variações temporárias do sistema operacional.
+Banco de dados chave-valor em memória otimizado para baixa latência e alto throughput.
 
-### Configuração
+## Apache Cassandra
 
-- Iterações por teste: 10000
-- Execução local
-- Banco de dados executando na mesma máquina
-
-### Tamanhos dos Dados
-
-Os seguintes tamanhos de payload foram utilizados:
-
-- 64 bytes
-- 256 bytes
-- 1024 bytes
-- 4096 bytes
-
-As métricas coletadas incluem:
-
-- Tempo médio de execução
-- Operações por segundo
-- Latência
+Banco de dados distribuído orientado a colunas projetado para alta disponibilidade e escalabilidade horizontal.
 
 ---
 
-## Benchmark YCSB
+# Mecanismos Criptográficos Avaliados
 
-Além dos testes criptográficos personalizados, foi utilizado o Yahoo! Cloud Serving Benchmark (YCSB) para avaliar o comportamento dos bancos sob cargas padronizadas.
+## Criptografia Simétrica
 
-### Ferramenta
+### AES-256
 
-- YCSB 0.17.0
-
-### Configuração
-
-- operationcount=100000
+Utilizado para avaliar o impacto da criptografia de dados antes do armazenamento.
 
 ---
 
-## Procedimento Experimental
+## Hash Criptográfico
 
-Para cada banco de dados:
+### SHA-256
 
-1. Inicialização do serviço.
-2. Inserção dos registros necessários.
-3. Execução dos benchmarks criptográficos.
-4. Execução dos workloads YCSB.
-5. Coleta das métricas.
-6. Armazenamento dos resultados em arquivos JSON e TXT.
+Avaliado como mecanismo de integridade dos dados.
 
----
+### bcrypt
 
-## Coleta de Resultados
+Avaliado como mecanismo de derivação de chaves e armazenamento seguro de credenciais.
 
-Os resultados foram armazenados em arquivos JSON e TXT para posterior análise.
+### Argon2
 
-As métricas principais consideradas foram:
-
-- Throughput (operações por segundo)
-- Latência média
-- Latência máxima
-- Percentis de latência
-- Tempo total de execução
+Avaliado como alternativa moderna ao bcrypt, projetada para resistência a ataques por hardware especializado.
 
 ---
 
-## Reprodutibilidade
+## Autenticação
 
-Todos os códigos-fonte utilizados nos experimentos estão disponíveis neste repositório.
+### HMAC-SHA256
 
-Os resultados apresentados no trabalho podem ser reproduzidos executando os scripts disponibilizados e utilizando as versões dos softwares descritas na documentação.
+Utilizado para avaliar mecanismos de autenticação e verificação de integridade.
+
+---
+
+# Operações Avaliadas
+
+As operações implementadas simulam cenários comuns encontrados em aplicações reais.
+
+## Inserção
+
+- insert_aes256
+- insert_sha256
+- insert_hmac_sha256
+- insert_bcrypt
+- insert_argon2
+
+## Leitura
+
+- read_decrypt_aes256
+- read_verify_sha256
+
+## Atualização
+
+- update_reencrypt_aes256
+
+## Remoção
+
+- delete_encrypted_record
+
+---
+
+# Configuração dos Experimentos
+
+## Iterações
+
+Cada operação foi executada 10000 vezes.
+
+A utilização de múltiplas execuções reduz o impacto de variações temporárias do sistema operacional e melhora a confiabilidade estatística dos resultados.
+
+---
+
+## Tamanhos dos Dados
+
+Foram utilizados diferentes tamanhos de payload para avaliar a escalabilidade dos mecanismos criptográficos.
+
+| Payload |
+|----------|
+| 64 bytes |
+| 256 bytes |
+| 1024 bytes |
+| 4096 bytes |
+
+---
+
+# Avaliação com YCSB
+
+Além dos benchmarks criptográficos personalizados, foi utilizado o Yahoo! Cloud Serving Benchmark (YCSB), uma ferramenta amplamente adotada para avaliação de desempenho de bancos de dados.
+
+## Versão
+
+YCSB 0.17.0
+
+## Configuração
+
+```text
+operationcount=100000
